@@ -3,6 +3,8 @@ const app = express()
 
 app.use(express.json())
 
+app.use(express.static('build'))
+
 const cors = require('cors')
 app.use(cors())
 
@@ -61,11 +63,6 @@ app.delete('/api/notes/:id', (request, response) => {
   response.status(204).end()
 })
 
-const PORT = process.env.PORT || 3001
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`)
-})
-
 const generateId = () => {
   const maxId = notes.length > 0
     ? Math.max(...notes.map(n => Number(n.id)))
@@ -90,6 +87,11 @@ app.post('/api/notes', (request, response) => {
 
   notes = notes.concat(note)
 
-console.log(note)
   response.json(note)
+})
+
+// *** TÄMÄ VIIMEISEKSI ***
+const PORT = process.env.PORT || 3001
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`)
 })
