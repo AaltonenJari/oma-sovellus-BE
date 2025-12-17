@@ -9,7 +9,7 @@
   "scripts": {
     "start": "node index.js",
     "dev": "node --watch index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node --test",
     "build:ui": "rimraf build && npm --prefix ../oma-sovellus install && npm --prefix ../oma-sovellus run build && npx cpy \"../oma-sovellus/build/**\" \"build\" --parents",
     "deploy:full": "npm run build:ui && git add build -f && git commit -m \"Update UI build\" && git push",
     "lint": "eslint ."
